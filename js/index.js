@@ -6,30 +6,32 @@ $(document).ready(function(){
     let selectShape; // shape id
     let selectColour; // colour id
     let activeCanvas; // canvas context
+    let defaultColour = "#000000"
 
     let canvases = {
         "nw-canvas": {
             shape: "",
-            colour: "#000000"            
+            colour: defaultColour         
         },
         "ne-canvas": {
             shape: "",
-            colour: "#000000"
+            colour: defaultColour
         },
         "se-canvas": {
             shape: "",
-            colour: "#000000"
+            colour: defaultColour
         },
         "sw-canvas": {
             shape: "",
-            colour: "#000000"
+            colour: defaultColour
         },
     };
 
     $("#clear-btn").click(function() {
         console.log(selectCanvas)
         clearCanvas(activeCanvas,selectCanvas);
-        canvases[selectCanvasId] = {};
+        canvases[selectCanvasId] = {colour: defaultColour};
+        console.log(canvases)
     });
 
     // activate target canvas
