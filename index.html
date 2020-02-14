@@ -3,58 +3,79 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
+        <link rel="stylesheet" type="text/css" href="css/jquery.svg.css"> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/Menu_Style.css">
         <title>Mural</title>
+    </head>
     <body>
-        <h1>Mural</h1>
-        <div class="board">
-            <div class="row no-gutters">
-                <div class="col">
-                    <canvas id="nw-canvas" class="canvas" height="200" width="200"></canvas>
-                </div>
-                <div class="col">
-                    <canvas id="ne-canvas" class="canvas" height="200" width="200"></canvas>
-                </div>
-                <div class="w-100"></div>
-                <div class="col">
-                    <canvas id="sw-canvas" class="canvas" height="200" width="200"></canvas>
-                </div>
-                <div class="col">
-                    <canvas id="se-canvas" class="canvas" height="200" width="200"></canvas>
-                </div>
-            </div>
-        </div>
-        
-        <div id="shapes-menu" class="container">
-            <div class="row">
-                <div id="triangle-choice" class="menu-item">
-                    triangle
-                </div>
-                <div id="star-choice" class="menu-item">
-                    star
-                </div>
-            </div>
-        </div>
-        
-        <div id="colours-menu" class="container">
-            <div class="row">
-                <div id="red" class="menu-item" colour="#F20F0F">
-                    red
-                </div>
-                <div id="blue" class="menu-item" colour="#0FC6FA">
-                    blue
-                </div>
-            </div>
-        </div>
+        <header>
+            <h1>Mural</h1>
+        </header>
+        <main id="main-area">
+            <div id="sidebar">
 
-        <button id="clear-btn">Clear</button>
+                <h2>Shapes</h2>
+                <div id="shapes-menu">
+                    <span id="shp-1" class="menu-item">
+                        <img class="shp-icon" src="Resources/Shapes/PNGS/MenuIcons-01-1.png">
+                    </span>
+                    <span id="shp-2" class="menu-item">
+                        <img class="shp-icon" src="Resources/Shapes/PNGS/MenuIcons-02-1.png">
+                    </span>
+                    <span id="shp-5" class="menu-item">
+                        <img class="shp-icon" src="Resources/Shapes/PNGS/MenuIcons-05-1.png">
+                    </span>
+                    <span id="shp-6" class="menu-item">
+                        <img class="shp-icon" src="Resources/Shapes/PNGS/MenuIcons-06-1.png">
+                    </span>
+                </div>
 
-        <p>Test</p>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="js/shapes.js"></script>
-    <script src="js/index.js"></script>
-</html>
+                <h2>Colours</h2>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-bottom:20px;">
+                    <!-- <button id="shape-colour" class="btn-primary colour-btn" role="button">Shape</button>
+                    <button id="bg-shape-colour" class="btn-primary colour-btn" role="button">Background</button> -->
+                    <label id="shape-colour" class="btn btn-secondary active colour-btn">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Shape
+                    </label>
+                    <label id="bg-shape-colour" class="btn btn-secondary colour-btn">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Background
+                    </label>
+                </div>
+
+                <div id="colours-menu">
+                    <div id="Red" class="menu-item" colour="#E63634"></div>
+                    <div id="Blue" class="menu-item" colour="#3D62AE"></div>
+                    <div id="Green" class="menu-item" colour="#79C47E"></div>
+                    <div id="Yellow" class="menu-item" colour="#F4EB23"></div>
+                </div>
+                <button id="clear-btn">Clear</button>
+            </div> 
+
+            <div id="display-area">
+                <div class="board">
+                    <!-- <span id="nw-canvas" class="canvas" height="200" width="200"></span><span id="ne-canvas" class="canvas" height="200" width="200"></span> -->
+                    <div id="nw-canvas" class="canvas" height="200" width="200"></div><div id="ne-canvas" class="canvas" height="200" width="200"></div>
+                </div>
+                <div class="board">
+                    <div id="sw-canvas" class="canvas" height="200" width="200"></div><div id="se-canvas" class="canvas" height="200" width="200"></div>
+                </div> 
+            </div> 
+
+            
+            
+
+
+
+
+
+    </main>
+        </body>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/jquery.svg/jquery.svg.js"></script>
+        <script src="js/shapes.js"></script>
+        <script src="js/index.js"></script>
+        </html>

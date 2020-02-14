@@ -2,10 +2,35 @@ function clearCanvas(ctx,canvas) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+const shapeMapping = {
+    "shp-1": "01-1",
+    "shp-2": "02-1",
+    "shp-5": "05-1",
+    "shp-6": "06-1",
+}
+
+// Insert svg functions
+const attach = {
+    "four-balls-choice": function attachSvg(element) {
+        $(element).svg({
+        onLoad: function()
+            {
+            element.load('Red1.svg', {addTo: true,  changeSize: false});        
+            },
+        settings: {}}
+        )
+    },
+    "test-balls-choice": function attachSvg() {
+
+    }
+}
+
+
+// Draw canvas shape functions
 const draw = {
-    "triangle-choice": function drawcanvas(ctx, colour) {
-        console.log('afd')
+    "triangle-choice": function drawcanvas(ctx, colour, angle) {
             //Shape0;
+            ctx.rotate(angle * Math.PI / 180);
             ctx.shadowColor ="rgba(0,0,0,0)";
             ctx.strokeStyle ="rgba(0,0,0,1)";
             ctx.lineWidth = 1;
@@ -24,10 +49,11 @@ const draw = {
             ctx.shadowColor = "rgba(0,0,0,0)";
             ctx.fillStyle = colour;
             ctx.fill();
-    },
-    "star-choice": function drawcanvas(ctx,colour)
-    {
+        },
+        "star-choice": function drawcanvas(ctx, colour, angle)
+        {
           //Shape9;
+          ctx.rotate(angle * Math.PI / 180);
           ctx.shadowColor ="rgba(0,0,0,0)";
           ctx.strokeStyle ="rgba(255,255,255,1)";
           ctx.lineWidth = 1;
