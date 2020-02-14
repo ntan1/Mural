@@ -36,14 +36,6 @@ $(document).ready(function(){
             angle: defaultAngle
         },
     };
-
-    $("#clear-btn").click(function() {
-        console.log(selectCanvas)
-        clearCanvas(activeCanvas,selectCanvas);
-        canvases[selectCanvasId] = {colour: defaultColour};
-        console.log(canvases)
-    });
-
     
     // activate target canvas
     $(".canvas").click(function() {
@@ -95,8 +87,19 @@ $(document).ready(function(){
         selectColourId = "Clear";
     });
 
-    
+    $("#clear-btn").click(function() {
+        $(selectCanvas).html("");
+        $(selectCanvas).css("background-color", "white");
+    });
+
     /*
+    $("#clear-btn").click(function() {
+        console.log(selectCanvas)
+        clearCanvas(activeCanvas,selectCanvas);
+        canvases[selectCanvasId] = {colour: defaultColour};
+        console.log(canvases)
+    });
+
     // rotate shape
     $("#rotate-cw-btn").click(function() {
         canvases[selectCanvasId].angle = (canvases[selectCanvasId].angle + rotateAngle) % 360;
