@@ -92,6 +92,21 @@ $(document).ready(function(){
         $(selectCanvas).css("background-color", "white");
     });
 
+    xhr = new XMLHttpRequest();
+    xhr.open("GET","Resources/Shapes/SVGS/SVG-a-03.svg",false);
+    // Following line is just to be on the safe side;
+    // not needed if your server delivers SVG with correct MIME type
+    xhr.overrideMimeType("image/svg+xml");
+    xhr.send("");
+    document.getElementById("svgContainer")
+      .appendChild(xhr.responseXML.documentElement);
+
+
+    
+
+
+
+
     /*
     $("#clear-btn").click(function() {
         console.log(selectCanvas)
