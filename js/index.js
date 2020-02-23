@@ -1,14 +1,14 @@
 $(document).ready(function(){
-
     // init variables
     let selectCanvas; // canvas object
     let selectCanvasId; // canvas id
-    let selectShape = ""; // shape id
+    let selectShape = ""; // selected svg group object
+    let selectShapeId = ""; // selected shape id
     let selectColour; // hex colour
     let selectColourId = "Clear"; // colour id
     let targetToggle = "shape-colour";
     let activeCanvas; // canvas context
-    let defaultColour = "#000000"
+    let defaultColour = "#E63634"
     let canvas = $("#main-canvas");
 
     let canvasWidth = 600;
@@ -18,14 +18,15 @@ $(document).ready(function(){
 
     let shapes = [];
 
+
     let draw = SVG().addTo('#main-canvas').size(canvasWidth,canvasHeight);
 
     // shape on click
     $("#shapes-menu .menu-item").click(function() {
         console.log($(this).attr("id"));
-        selectShape = $(this).attr("id");
+        selectShapeId = $(this).attr("id");
         console.log(shapes);
-        drawShapes[selectShape].draw(draw, 'blue', (defaultWidth/2), (defaultHeight/2), defaultWidth, defaultHeight);
+        drawShapes[selectShapeId].draw(draw, defaultColour, (defaultWidth/2), (defaultHeight/2), defaultWidth, defaultHeight);
         // shapes.push(drawShapes[selectShape].draw(draw, 'blue', 250, 250, defaultWidth, defaultHeight));
 
         // selectShape = $(this).attr("id");
@@ -42,10 +43,11 @@ $(document).ready(function(){
     $("#colours-menu .menu-item").click(function() {
         selectColour = $(this).attr("colour");
         selectColourId = $(this).attr("id");
-        console.log(selectColour);
-        console.log(targetToggle);
-        if(targetToggle=="shape-colour" && selectShape != "") {
-            drawShapes[selectShape].changeColour(draw, selectColour)
+        console.log("selectShape: " + selectShapeId)
+        console.log("selectColour: " + selectColour);
+        console.log("targetToggle: " + targetToggle);
+        if(targetToggle=="shape-colour") {
+            drawShapes[selectShapeId].changeColour(draw, selectColour);
         } else if(targetToggle=="bg-shape-colour") {
             $(canvas).css("background-color", selectColour);
         }
@@ -62,19 +64,19 @@ $(document).ready(function(){
         console.log(location)
         switch(location) {
             case 'location1':
-                drawShapes[selectShape].relocate(draw, 0, 0, defaultWidth, defaultHeight);
+                drawShapes[selectShapeId].relocate(draw, 0, 0, defaultWidth, defaultHeight);
                 break;
             case 'location2':
-                drawShapes[selectShape].relocate(draw, defaultWidth, 0, defaultWidth, defaultHeight);
+                drawShapes[selectShapeId].relocate(draw, defaultWidth, 0, defaultWidth, defaultHeight);
                 break;
             case 'location3':
-                drawShapes[selectShape].relocate(draw, defaultWidth, defaultHeight, defaultWidth, defaultHeight);
+                drawShapes[selectShapeId].relocate(draw, defaultWidth, defaultHeight, defaultWidth, defaultHeight);
                 break;
             case 'location4':
-                drawShapes[selectShape].relocate(draw, 0, defaultHeight, defaultWidth, defaultHeight);
+                drawShapes[selectShapeId].relocate(draw, 0, defaultHeight, defaultWidth, defaultHeight);
                 break;
             case 'location5':
-                drawShapes[selectShape].relocate(draw, (defaultWidth/2), (defaultHeight/2), defaultWidth, defaultHeight);
+                drawShapes[selectShapeId].relocate(draw, (defaultWidth/2), (defaultHeight/2), defaultWidth, defaultHeight);
                 break;
         }
     });
@@ -83,13 +85,17 @@ $(document).ready(function(){
     $("#rotate-menu .menu-item").click(function() {
         $(this).attr("deg");
         console.log('deg to rotate:' + $(this).attr("deg"));
-        drawShapes[selectShape].rotate(draw, parseInt($(this).attr("deg")));
+        drawShapes[selectShapeId].rotate(draw, parseInt($(this).attr("deg")));
     });
 
     // clear button
     $("#clear-btn").click(function() {
-        drawShapes[selectShape].remove();
+        drawShapes[selectShapeId].remove();
     });
+
+
+
+
 
     // let group = draw.group();
     // group.path('M200,200H0c27.6,0,50-22.4,50-50c0-13.6-5.4-25.9-14.2-34.9c-8.1-8.3-8.1-21.8,0-30.2C44.6,75.9,50,63.6,50,50C50,22.4,27.6,0,0,0h200c-27.6,0-50,22.4-50,50c0,13.6,5.5,25.9,14.2,34.9c8.1,8.3,8.1,21.8,0,30.2c-8.8,9-14.2,21.3-14.2,34.9C150,177.6,172.4,200,200,200z');
@@ -106,9 +112,21 @@ $(document).ready(function(){
 
     // let group2 = draw.group();
     // let line1 = draw.line(159.5, 40.5, 40.5, 159.5).stroke({color: 'red', width: 4});
-    // let line2 = draw.line(22.2, 67.8, 177.8, 132.2).stroke({color: 'red', width: 4});
+    // let line2 = draw.line(159.5, 159.5, 40.5, 40.5).stroke({color: 'red', width: 4});
+    // let line3 = draw.line(184.2, 100, 15.8, 100).stroke({color: 'red', width: 4});
+    // let line4 = draw.line(100, 184.2, 100, 15.8).stroke({color: 'red', width: 4});
+    // let line5 = draw.line(22.2, 67.8, 177.8, 132.2).stroke({color: 'red', width: 4});
+    // let line6 = draw.line(132.2, 22.2, 67.8, 177.8).stroke({color: 'red', width: 4});
+    // let line7 = draw.line(67.8, 22.2, 132.2, 177.8).stroke({color: 'red', width: 4});
+    // let line8 = draw.line(177.8, 67.8, 22.2, 132.2).stroke({color: 'red', width: 4});
     // group2.add(line1);
     // group2.add(line2);
+    // group2.add(line3);
+    // group2.add(line4);
+    // group2.add(line5);
+    // group2.add(line6);
+    // group2.add(line7);
+    // group2.add(line8);
     // group2.transform({
     //     rotate: 45
     // });

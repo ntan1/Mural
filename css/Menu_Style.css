@@ -17,3 +17,9 @@
 #Yellow {
     background-color: #F4EB23;
 }
+
+.rotate-menu-item {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
