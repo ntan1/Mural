@@ -9,8 +9,88 @@ $(document).ready(function(){
     let targetToggle = "shape-colour";
     let activeCanvas; // canvas context
     let defaultColour = "#000000"
+    let canvas = $("#main-canvas");
 
-    
+    let defaultWidth = 300;
+    let defaultHeight = 300;
+
+    let shapes = [];
+
+    let draw = SVG().addTo('#main-canvas').size(600,600);
+
+    // shape on click
+    $("#shapes-menu .menu-item").click(function() {
+        console.log($(this).attr("id"));
+        selectShape = $(this).attr("id");
+        console.log(shapes);
+        drawShapes[selectShape].draw(draw, 'blue', 250, 250, defaultWidth, defaultHeight);
+        // shapes.push(drawShapes[selectShape].draw(draw, 'blue', 250, 250, defaultWidth, defaultHeight));
+
+        // selectShape = $(this).attr("id");
+        // canvases[selectCanvasId].shape = selectShape;
+        // console.log($(this))
+        // console.log(selectShape);
+        // console.log(canvases[selectCanvasId].colour);
+        // if(targetToggle=="shape-colour") {
+        //     $(selectCanvas).html("");
+        //     $(selectCanvas).html("<img class='canvas-img' src='Resources/Shapes/PNGS/PNG_" + selectColourId + "-" + shapeMapping[selectShape] + ".png'>");
+        // }
+    });
+
+    $("#colours-menu .menu-item").click(function() {
+        selectColour = $(this).attr("colour");
+        selectColourId = $(this).attr("id");
+        console.log(selectColour);
+        console.log(targetToggle);
+        if(targetToggle=="shape-colour" && selectShape != "") {
+            drawShapes[selectShape].changeColour(draw, selectColour)
+        } else if(targetToggle=="bg-shape-colour") {
+            $(canvas).css("background-color", selectColour);
+        }
+    });
+
+    $(".colour-btn").click(function() {
+        targetToggle = $(this).attr("id");
+        console.log(targetToggle);
+    });
+
+    // Rotate menu on click
+    $("#rotate-menu .menu-item").click(function() {
+        $(this).attr("deg");
+        console.log('deg to rotate:' + $(this).attr("deg"));
+        drawShapes[selectShape].rotate(draw, parseInt($(this).attr("deg")));
+    });
+
+    let group = draw.group();
+    group.path('M200,200H0c27.6,0,50-22.4,50-50c0-13.6-5.4-25.9-14.2-34.9c-8.1-8.3-8.1-21.8,0-30.2C44.6,75.9,50,63.6,50,50C50,22.4,27.6,0,0,0h200c-27.6,0-50,22.4-50,50c0,13.6,5.5,25.9,14.2,34.9c8.1,8.3,8.1,21.8,0,30.2c-8.8,9-14.2,21.3-14.2,34.9C150,177.6,172.4,200,200,200z');
+    //let shape1 = draw.svg('<g id="colours_1"><g><path class="st23" d="M200,200H0c27.6,0,50-22.4,50-50c0-13.6-5.4-25.9-14.2-34.9c-8.1-8.3-8.1-21.8,0-30.2C44.6,75.9,50,63.6,50,50C50,22.4,27.6,0,0,0h200c-27.6,0-50,22.4-50,50c0,13.6,5.5,25.9,14.2,34.9c8.1,8.3,8.1,21.8,0,30.2c-8.8,9-14.2,21.3-14.2,34.9C150,177.6,172.4,200,200,200z"/></g></g>')
+    group.fill('blue');
+    group.cx(0).cy(0);
+    group.size(400, 400)
+    // group.transform({
+    //     rotate: 45
+    // });
+    group.click(function() {
+        this.fill({color: 'black'});
+    });
+
+    let group2 = draw.group();
+    let line1 = draw.line(159.5, 40.5, 40.5, 159.5).stroke({color: 'red', width: 4});
+    let line2 = draw.line(22.2, 67.8, 177.8, 132.2).stroke({color: 'red', width: 4});
+    group2.add(line1);
+    group2.add(line2);
+    group2.transform({
+        rotate: 45
+    });
+    group2.click(function() {
+        let list = group2.find('line')
+        console.log(list)
+        list.stroke({color: 'blue', width: 4});
+    });
+
+   // line1.stroke({color: 'red', width: 4})
+
+    /* old code that used 4 grids
     let defaultAngle = 0;
     let rotateAngle = 5;
 
@@ -91,20 +171,10 @@ $(document).ready(function(){
         $(selectCanvas).html("");
         $(selectCanvas).css("background-color", "white");
     });
-
-    xhr = new XMLHttpRequest();
-    xhr.open("GET","Resources/Shapes/SVGS/SVG-a-03.svg",false);
-    // Following line is just to be on the safe side;
-    // not needed if your server delivers SVG with correct MIME type
-    xhr.overrideMimeType("image/svg+xml");
-    xhr.send("");
-    document.getElementById("svgContainer")
-      .appendChild(xhr.responseXML.documentElement);
+*/
 
 
-    
-
-
+   
 
 
     /*
