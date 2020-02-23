@@ -61,32 +61,32 @@ $(document).ready(function(){
         drawShapes[selectShape].rotate(draw, parseInt($(this).attr("deg")));
     });
 
-    let group = draw.group();
-    group.path('M200,200H0c27.6,0,50-22.4,50-50c0-13.6-5.4-25.9-14.2-34.9c-8.1-8.3-8.1-21.8,0-30.2C44.6,75.9,50,63.6,50,50C50,22.4,27.6,0,0,0h200c-27.6,0-50,22.4-50,50c0,13.6,5.5,25.9,14.2,34.9c8.1,8.3,8.1,21.8,0,30.2c-8.8,9-14.2,21.3-14.2,34.9C150,177.6,172.4,200,200,200z');
-    //let shape1 = draw.svg('<g id="colours_1"><g><path class="st23" d="M200,200H0c27.6,0,50-22.4,50-50c0-13.6-5.4-25.9-14.2-34.9c-8.1-8.3-8.1-21.8,0-30.2C44.6,75.9,50,63.6,50,50C50,22.4,27.6,0,0,0h200c-27.6,0-50,22.4-50,50c0,13.6,5.5,25.9,14.2,34.9c8.1,8.3,8.1,21.8,0,30.2c-8.8,9-14.2,21.3-14.2,34.9C150,177.6,172.4,200,200,200z"/></g></g>')
-    group.fill('blue');
-    group.cx(0).cy(0);
-    group.size(400, 400)
-    // group.transform({
+    // let group = draw.group();
+    // group.path('M200,200H0c27.6,0,50-22.4,50-50c0-13.6-5.4-25.9-14.2-34.9c-8.1-8.3-8.1-21.8,0-30.2C44.6,75.9,50,63.6,50,50C50,22.4,27.6,0,0,0h200c-27.6,0-50,22.4-50,50c0,13.6,5.5,25.9,14.2,34.9c8.1,8.3,8.1,21.8,0,30.2c-8.8,9-14.2,21.3-14.2,34.9C150,177.6,172.4,200,200,200z');
+    // //let shape1 = draw.svg('<g id="colours_1"><g><path class="st23" d="M200,200H0c27.6,0,50-22.4,50-50c0-13.6-5.4-25.9-14.2-34.9c-8.1-8.3-8.1-21.8,0-30.2C44.6,75.9,50,63.6,50,50C50,22.4,27.6,0,0,0h200c-27.6,0-50,22.4-50,50c0,13.6,5.5,25.9,14.2,34.9c8.1,8.3,8.1,21.8,0,30.2c-8.8,9-14.2,21.3-14.2,34.9C150,177.6,172.4,200,200,200z"/></g></g>')
+    // group.fill('blue');
+    // group.cx(0).cy(0);
+    // group.size(400, 400)
+    // // group.transform({
+    // //     rotate: 45
+    // // });
+    // group.click(function() {
+    //     this.fill({color: 'black'});
+    // });
+
+    // let group2 = draw.group();
+    // let line1 = draw.line(159.5, 40.5, 40.5, 159.5).stroke({color: 'red', width: 4});
+    // let line2 = draw.line(22.2, 67.8, 177.8, 132.2).stroke({color: 'red', width: 4});
+    // group2.add(line1);
+    // group2.add(line2);
+    // group2.transform({
     //     rotate: 45
     // });
-    group.click(function() {
-        this.fill({color: 'black'});
-    });
-
-    let group2 = draw.group();
-    let line1 = draw.line(159.5, 40.5, 40.5, 159.5).stroke({color: 'red', width: 4});
-    let line2 = draw.line(22.2, 67.8, 177.8, 132.2).stroke({color: 'red', width: 4});
-    group2.add(line1);
-    group2.add(line2);
-    group2.transform({
-        rotate: 45
-    });
-    group2.click(function() {
-        let list = group2.find('line')
-        console.log(list)
-        list.stroke({color: 'blue', width: 4});
-    });
+    // group2.click(function() {
+    //     let list = group2.find('line')
+    //     console.log(list)
+    //     list.stroke({color: 'blue', width: 4});
+    // });
 
    // line1.stroke({color: 'red', width: 4})
 
