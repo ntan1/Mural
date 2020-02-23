@@ -67,4 +67,5 @@
 #main-canvas{
     height: 600px;
     width: 600px;
+    box-sizing: content-box
 }
