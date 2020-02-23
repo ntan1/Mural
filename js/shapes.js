@@ -4,11 +4,11 @@ function clearCanvas(ctx,canvas) {
 
 const drawShapes = {
     "shp-3": {
-        draw: function(svg, colour, cx, cy, width, height) {
+        draw: function(svg, colour, x, y, width, height) {
             let group = svg.group();
             group.path('M200,200H0c27.6,0,50-22.4,50-50c0-13.6-5.4-25.9-14.2-34.9c-8.1-8.3-8.1-21.8,0-30.2C44.6,75.9,50,63.6,50,50C50,22.4,27.6,0,0,0h200c-27.6,0-50,22.4-50,50c0,13.6,5.5,25.9,14.2,34.9c8.1,8.3,8.1,21.8,0,30.2c-8.8,9-14.2,21.3-14.2,34.9C150,177.6,172.4,200,200,200z');
             group.fill(colour);
-            group.cx(cx).cy(cy);
+            group.x(x).y(y);
             group.size(width, height);
             selectShape = group;
             group.click(function() {
@@ -26,6 +26,19 @@ const drawShapes = {
                 rotate: origDeg + deg
             });
             console.log(selectShape.transform('rotate'));
+        },
+        relocate: function(svg, x, y, defaultWidth, defaultHeight) { // can't use global variables defaultWidth and defaultHeight for some reason?
+            let origDeg = selectShape.transform('rotate');
+            // reset shape
+            selectShape.move((defaultWidth/2), (defaultHeight/2));
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x,y);
+            selectShape.transform({
+                rotate: origDeg
+            });
         }
     }
 }

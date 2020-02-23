@@ -11,19 +11,21 @@ $(document).ready(function(){
     let defaultColour = "#000000"
     let canvas = $("#main-canvas");
 
+    let canvasWidth = 600;
+    let canvasHeight = 600;
     let defaultWidth = 300;
     let defaultHeight = 300;
 
     let shapes = [];
 
-    let draw = SVG().addTo('#main-canvas').size(600,600);
+    let draw = SVG().addTo('#main-canvas').size(canvasWidth,canvasHeight);
 
     // shape on click
     $("#shapes-menu .menu-item").click(function() {
         console.log($(this).attr("id"));
         selectShape = $(this).attr("id");
         console.log(shapes);
-        drawShapes[selectShape].draw(draw, 'blue', 250, 250, defaultWidth, defaultHeight);
+        drawShapes[selectShape].draw(draw, 'blue', (defaultWidth/2), (defaultHeight/2), defaultWidth, defaultHeight);
         // shapes.push(drawShapes[selectShape].draw(draw, 'blue', 250, 250, defaultWidth, defaultHeight));
 
         // selectShape = $(this).attr("id");
@@ -52,6 +54,29 @@ $(document).ready(function(){
     $(".colour-btn").click(function() {
         targetToggle = $(this).attr("id");
         console.log(targetToggle);
+    });
+
+    // Location menu on click
+    $("#location-menu .menu-item").click(function() {
+        let location = $(this).attr("id");
+        console.log(location)
+        switch(location) {
+            case 'location1':
+                drawShapes[selectShape].relocate(draw, 0, 0, defaultWidth, defaultHeight);
+                break;
+            case 'location2':
+                drawShapes[selectShape].relocate(draw, defaultWidth, 0, defaultWidth, defaultHeight);
+                break;
+            case 'location3':
+                drawShapes[selectShape].relocate(draw, defaultWidth, defaultHeight, defaultWidth, defaultHeight);
+                break;
+            case 'location4':
+                drawShapes[selectShape].relocate(draw, 0, defaultHeight, defaultWidth, defaultHeight);
+                break;
+            case 'location5':
+                drawShapes[selectShape].relocate(draw, (defaultWidth/2), (defaultHeight/2), defaultWidth, defaultHeight);
+                break;
+        }
     });
 
     // Rotate menu on click
