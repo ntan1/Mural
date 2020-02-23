@@ -39,6 +39,9 @@ const drawShapes = {
             selectShape.transform({
                 rotate: origDeg
             });
+        },
+        remove: function() {
+            selectShape.remove()
         }
     }
 }
