@@ -1,4 +1,17 @@
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAZAl7UzorPRSCoiAXQVHIr66irqJSniio",
+    authDomain: "mural-fc495.firebaseapp.com",
+    databaseURL: "https://mural-fc495.firebaseio.com",
+    projectId: "mural-fc495",
+    storageBucket: "mural-fc495.appspot.com",
+    messagingSenderId: "405515397526",
+    appId: "1:405515397526:web:d79512b68af49ff8a7d5b7",
+    measurementId: "G-MWYE9XMLZT"
+};
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 $(document).ready(function(){
