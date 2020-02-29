@@ -118,18 +118,23 @@ $(document).ready(function(){
         console.log("Name: " + $("#submitName").val());
         console.log("Title: " + $("#submitTitle").val());
         console.log("Date: " + now);
-        db.collection("Submitted-Shapes").add({
-            Timestamp: now,
-            submitName: $("#submitName").val(),
-            title: $("#submitTitle").val(),
-            svg: draw.svg()
-        })
-        .then(function(docRef) {
-            console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function(error) {
-            console.error("Error adding document: ", error);
-        });
+        if($("#main-canvas svg").html() == "") {
+            console.log("no svg");
+        } else {
+            console.log($("#main-canvas svg").html());
+            db.collection("Submitted-Shapes").add({
+                Timestamp: now,
+                submitName: $("#submitName").val(),
+                title: $("#submitTitle").val(),
+                svg: draw.svg()
+            })
+            .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+        }
     });
 
 
