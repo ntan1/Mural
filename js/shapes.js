@@ -13,11 +13,8 @@ let drawShapes = {
             group.x(x).y(y);
             group.size(width, height);
             selectShape = group;
-            selectShapeId = "shp-1"
-            selectShape.addClass("shp-1")
             group.click(function() {
                 selectShape = group;
-                selectShapeId = "shp-1"
             });
         },
         changeColour: function(svg, colour) {
@@ -59,8 +56,6 @@ let drawShapes = {
             group.x(x).y(y);
             group.size(width, height);
             selectShape = group;
-            selectShapeId = "shp-1"
-            selectShape.addClass("shp-1")
             group.click(function() {
                 selectShape = group;
                 selectShapeId = "shp-1"

@@ -61,10 +61,10 @@
                 </div>
 
                 <div id="colours-menu">
-                    <div id="Red" class="menu-item" colour="#E63634"></div>
-                    <div id="Blue" class="menu-item" colour="#3D62AE"></div>
-                    <div id="Green" class="menu-item" colour="#79C47E"></div>
-                    <div id="Yellow" class="menu-item" colour="#F4EB23"></div>
+                    <div id="Red" class="menu-item border-circle" colour="#E63634"></div>
+                    <div id="Blue" class="menu-item border-circle" colour="#3D62AE"></div>
+                    <div id="Green" class="menu-item border-circle" colour="#79C47E"></div>
+                    <div id="Yellow" class="menu-item border-circle" colour="#F4EB23"></div>
                 </div>
 
                 <h2>Location</h2>
@@ -78,28 +78,57 @@
 
                 <h2>Rotate</h2>
                 <div id="rotate-menu">
-                    <div id="rotate-left" class="menu-item rotate-menu-item" deg="-45">rotate left</div>
-                    <div id="rotate-right" class="menu-item rotate-menu-item" deg="45">rotate right</div>
+                    <div id="rotate-left" class="menu-item rotate-menu-item border-circle" deg="-45">L</div>
+                    <div id="rotate-right" class="menu-item rotate-menu-item border-circle" deg="45">R</div>
                 </div>
-                <button id="clear-btn">Clear</button>
-            </div> 
 
+                <div>
+                    <button id="clear-btn">Clear</button>
+                </div>
+                <div>
+                    <button id="submit-btn">Submit</button>
+                </div>
+            </div> 
+            
             <div id="display-area">
                 <div class="board">
                     <div id="main-canvas" class="canvas"></div>
+                    <div id="button-menu">
+                        <div>
+                            <label>Name: </label><input type="text" width="100" id="submitName">
+                        </div>
+                        <div>
+                            <label>Title: </label><input type="text" width="100" id="submitTitle">
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- <div class="board">
-                    <div id="nw-canvas" class="canvas" height="200" width="200"></div><div id="ne-canvas" class="canvas" height="200" width="200"></div>
-                </div>
-                <div class="board">
-                    <div id="sw-canvas" class="canvas" height="200" width="200"></div><div id="se-canvas" class="canvas" height="200" width="200"></div>
-                </div>  -->
             </div> 
+
 
 
     </main>
         </body>
+        <!-- The core Firebase JS SDK -->
+        <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+
+        <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAZAl7UzorPRSCoiAXQVHIr66irqJSniio",
+            authDomain: "mural-fc495.firebaseapp.com",
+            databaseURL: "https://mural-fc495.firebaseio.com",
+            projectId: "mural-fc495",
+            storageBucket: "mural-fc495.appspot.com",
+            messagingSenderId: "405515397526",
+            appId: "1:405515397526:web:d79512b68af49ff8a7d5b7",
+            measurementId: "G-MWYE9XMLZT"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        </script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

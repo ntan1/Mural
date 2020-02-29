@@ -1,3 +1,6 @@
+
+const db = firebase.firestore();
+
 $(document).ready(function(){
     // init variables
     let selectCanvas; // canvas object
@@ -19,6 +22,7 @@ $(document).ready(function(){
     let shapes = [];
 
 
+
     let draw = SVG().addTo('#main-canvas').size(canvasWidth,canvasHeight);
 
     // shape on click
@@ -27,6 +31,7 @@ $(document).ready(function(){
         selectShapeId = $(this).attr("id");
         console.log(shapes);
         drawShapes[selectShapeId].draw(draw, defaultColour, (defaultWidth/2), (defaultHeight/2), defaultWidth, defaultHeight);
+        console.log(draw.svg());
         // shapes.push(drawShapes[selectShape].draw(draw, 'blue', 250, 250, defaultWidth, defaultHeight));
 
         // selectShape = $(this).attr("id");
@@ -91,6 +96,27 @@ $(document).ready(function(){
     // clear button
     $("#clear-btn").click(function() {
         drawShapes[selectShapeId].remove();
+    });
+
+    // submit button
+    $("#submit-btn").click(function() {
+        let now = new Date();
+        console.log(draw.svg());
+        console.log("Name: " + $("#submitName").val());
+        console.log("Title: " + $("#submitTitle").val());
+        console.log("Date: " + now);
+        db.collection("Submitted-Shapes").add({
+            Timestamp: now,
+            submitName: $("#submitName").val(),
+            title: $("#submitTitle").val(),
+            svg: draw.svg()
+        })
+        .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
     });
 
 

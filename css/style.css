@@ -41,8 +41,8 @@
     width:75px;
     height:75px;
     cursor: pointer;
+    box-sizing: content-box;
 }
-
 
 #nw-canvas{
     border-width: 1px 0px 0px 1px;
