@@ -18,8 +18,8 @@ $(document).ready(function(){
     let shapesRef = db.collection("Submitted-Shapes").get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-            console.log(doc.id, "=>", doc.data().svg.replace('width="600" height="600"', 'width="150" height="150" viewBox="0 0 300 300"'));
-            let embedSvg = $('<div class="tile">').append(doc.data().svg.replace('width="600" height="600"', 'width="300" height="300" viewBox="0 0 600 600"')).css("background-color", doc.data().bgColour)
+            console.log(doc.id, "=>", doc.data());
+            let embedSvg = $(`<div id="${doc.id}" class="tile" title="${doc.data().title}" submitName="${doc.data().submitName}">`).append(doc.data().svg.replace('width="600" height="600"', 'width="300" height="300" viewBox="0 0 600 600"')).css("background-color", doc.data().bgColour);
             // $("#display").append("<div class='tile'>" + doc.data().svg.replace('width="600" height="600"', 'width="300" height="300" viewBox="0 0 600 600"') + "</div>").css("background-color", doc.data().bgColour);
             $("#display").append(embedSvg);
         });

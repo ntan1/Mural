@@ -38,6 +38,10 @@ $(document).ready(function(){
 
     let draw = SVG().addTo('#main-canvas').size(canvasWidth,canvasHeight);
 
+    $(".menu-item").click(function() {
+        $("#status-message").html("");
+    });
+
     // shape on click
     $("#shapes-menu .menu-item").click(function() {
         console.log($(this).attr("id"));
@@ -121,6 +125,7 @@ $(document).ready(function(){
         console.log("Date: " + now);
         if($("#main-canvas svg").html() == "") {
             console.log("no svg");
+            $("#status-message").html("Cannot submit blank design");
         } else {
             console.log($("#main-canvas svg").html());
             db.collection("Submitted-Shapes").add({
@@ -133,7 +138,7 @@ $(document).ready(function(){
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
                 $("#status-message").html("Successfully submitted");
-                $("#main-canvas").html("");                
+                $("#main-canvas svg").html("");                
                 $("#main-canvas").css("background-color", "#FFFFFF");                
             })
             .catch(function(error) {
