@@ -68,6 +68,7 @@ $(document).ready(function(){
             drawShapes[selectShapeId].changeColour(draw, selectColour);
         } else if(targetToggle=="bg-shape-colour") {
             $(canvas).css("background-color", selectColour);
+            console.log($(canvas).css("background-color"));
         }
     });
 
@@ -126,16 +127,23 @@ $(document).ready(function(){
                 Timestamp: now,
                 submitName: $("#submitName").val(),
                 title: $("#submitTitle").val(),
+                bgColour: $(canvas).css("background-color"),
                 svg: draw.svg()
             })
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
+                $("#status-message").html("Successfully submitted");
+                $("#main-canvas").html("");                
+                $("#main-canvas").css("background-color", "#FFFFFF");                
             })
             .catch(function(error) {
                 console.error("Error adding document: ", error);
+                $("#status-message").html("Could not submit");
             });
         }
     });
+
+    
 
 
 

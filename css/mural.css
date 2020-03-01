@@ -1,0 +1,11 @@
+#display {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.tile {
+    max-width: 300px;
+    max-height: 300px;
+    display: inline-block;
+    box-sizing: content-box;
+}
