@@ -87,19 +87,19 @@ $(document).ready(function(){
         console.log(location)
         switch(location) {
             case 'location1':
-                drawShapes[selectShapeId].relocate(draw, 0, 0, defaultWidth, defaultHeight);
+                drawShapes[selectShapeId].relocate(draw, 0, 0, canvasWidth, canvasHeight);
                 break;
             case 'location2':
-                drawShapes[selectShapeId].relocate(draw, defaultWidth, 0, defaultWidth, defaultHeight);
+                drawShapes[selectShapeId].relocate(draw, defaultWidth, 0, canvasWidth, canvasHeight);
                 break;
             case 'location3':
-                drawShapes[selectShapeId].relocate(draw, defaultWidth, defaultHeight, defaultWidth, defaultHeight);
+                drawShapes[selectShapeId].relocate(draw, defaultWidth, defaultHeight, canvasWidth, canvasHeight);
                 break;
             case 'location4':
-                drawShapes[selectShapeId].relocate(draw, 0, defaultHeight, defaultWidth, defaultHeight);
+                drawShapes[selectShapeId].relocate(draw, 0, defaultHeight, canvasWidth, canvasHeight);
                 break;
             case 'location5':
-                drawShapes[selectShapeId].relocate(draw, (defaultWidth/2), (defaultHeight/2), defaultWidth, defaultHeight);
+                drawShapes[selectShapeId].relocate(draw, (defaultWidth/2), (defaultHeight/2), canvasWidth, canvasHeight);
                 break;
         }
     });
@@ -111,9 +111,32 @@ $(document).ready(function(){
         drawShapes[selectShapeId].rotate(draw, parseInt($(this).attr("deg")));
     });
 
-    // clear button
+    // Size menu on click
+    $("#size-menu .menu-item").click(function() {
+        let size = $(this).attr("size");
+        switch(size) {
+            case 'size1':
+                drawShapes[selectShapeId].resize(draw, canvasWidth, canvasHeight, 150, 150);
+                break;
+            case 'size2':
+                drawShapes[selectShapeId].resize(draw, canvasWidth, canvasHeight, 300, 300);
+                break;
+            case 'size3':
+                drawShapes[selectShapeId].resize(draw, canvasWidth, canvasHeight, 600, 600);
+                break;
+        }
+    });
+
+    // remove shape button
     $("#clear-btn").click(function() {
         drawShapes[selectShapeId].remove();
+    });
+
+    // clear all button
+    $("#clear-all-btn").click(function() {
+        drawShapes[selectShapeId].remove();
+        $("#main-canvas svg").html("");                
+        $("#main-canvas").css("background-color", "#FFFFFF");
     });
 
     // submit button
