@@ -928,159 +928,511 @@ let drawShapes = {
                 rotate: origDeg
             });
         }
+    },
+    "shp-10": {
+        draw: function(svg, colour, x, y, width, height) {
+            let group = svg.group();
+            let line1 = svg.line(184.2, 100, 15.8, 100).stroke({color: colour, width: 4});
+            let line2 = svg.line(100, 184.2, 100, 15.8).stroke({color: colour, width: 4});
+            group.add(line1);
+            group.add(line2);
+            group.x(x).y(y);
+            group.size(width, height);
+            selectShape = group;
+            group.click(function() {
+                selectShape = group;
+            });
+        },
+        changeColour: function(svg, colour) {
+            selectShape.fill(colour);
+            let list = selectShape.find('line');
+            list.stroke({color: colour, width: 4});
+        },
+        rotate: function(svg, deg) {
+            let origDeg = selectShape.transform('rotate');
+            console.log(origDeg);
+            selectShape.transform({
+                rotate: origDeg + deg
+            });
+            console.log(selectShape.transform('rotate'));
+        },
+        relocate: function(svg, x, y, canvasWidth, canvasHeight) { // can't use global variables defaultWidth and defaultHeight for some reason?
+            // determine which quadrant x position is in
+            if (x < canvasWidth/4) {
+                x = (canvasWidth/2-selectShape.width())/2
+            } else if (x >= canvasWidth/2) {
+                x = (canvasWidth/2-selectShape.width())/2 + canvasWidth/2
+            } else {
+                x = (canvasWidth-selectShape.width())/2
+            }
+            x = canvasWidth-selectShape.width() > 0 ? x : 0
+
+            // determine which quadrant y position is in
+            if (y < canvasHeight/4) {
+                y = (canvasHeight/2-selectShape.height())/2
+            } else if (y >= canvasHeight/2) {
+                y = (canvasHeight/2-selectShape.height())/2 + canvasHeight/2
+            } else {
+                y = (canvasHeight-selectShape.height())/2
+            }
+            y = canvasHeight-selectShape.height() > 0 ? y : 0
+
+            let origDeg = selectShape.transform('rotate');
+            // reset shape
+            selectShape.move((selectShape.width()/2), (selectShape.height()/2));
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x,y);
+            selectShape.transform({
+                rotate: origDeg
+            });
+        },
+        remove: function() {
+            selectShape.remove()
+        },
+        resize: function(svg, canvasWidth, canvasHeight, width, height) {
+            console.log(selectShape.x());
+            console.log(selectShape.y());
+            let origDeg = selectShape.transform('rotate');
+            let x;
+            let y;
+            // determine which quadrant x position is in
+            if (selectShape.x() < canvasWidth/4) {
+                x = (canvasWidth/2-width)/2
+            } else if (selectShape.x() >= canvasWidth/2) {
+                x = (canvasWidth/2-width)/2 + canvasWidth/2
+            } else {
+                x = (canvasWidth-width)/2
+            }
+            x = canvasWidth-width > 0 ? x : 0
+
+            // determine which quadrant y position is in
+            if (selectShape.y() < canvasHeight/4) {
+                y = (canvasHeight/2-height)/2
+            } else if (selectShape.y() >= canvasHeight/2) {
+                y = (canvasHeight/2-height)/2 + canvasHeight/2
+            } else {
+                y = (canvasHeight-height)/2
+            }
+            y = canvasHeight-height > 0 ? y : 0
+
+            // reset shape
+            selectShape.size(width, height);
+            selectShape.move((canvasWidth-width)/2, (canvasHeight-height)/2);
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x, y);
+            selectShape.transform({
+                rotate: origDeg
+            });
+        }
+    },
+    "shp-11": {
+        draw: function(svg, colour, x, y, width, height) {
+            let group = svg.group();
+            let polygon = svg.polygon("199.03 100 149.55 117.62 125.96 126.03 117.62 149.47 100.08 199.03 100 199.03 82.38 149.47 74.04 126.03 50.53 117.62 0.97 100 50.53 82.38 74.04 73.97 82.38 50.53 100 0.97 100.08 0.97 117.62 50.53 125.96 73.97 149.55 82.38 199.03 100");
+            group.add(polygon)
+            group.fill(colour);
+            group.x(x).y(y);
+            group.size(width, height);
+            selectShape = group;
+            group.click(function() {
+                selectShape = group;
+            });
+        },
+        changeColour: function(svg, colour) {
+            selectShape.fill(colour);
+            let list = selectShape.find('line');
+            list.stroke({color: colour, width: 4});      
+        },
+        rotate: function(svg, deg) {
+            let origDeg = selectShape.transform('rotate');
+            console.log(origDeg);
+            selectShape.transform({
+                rotate: origDeg + deg
+            });
+            console.log(selectShape.transform('rotate'));
+        },
+        relocate: function(svg, x, y, canvasWidth, canvasHeight) { // can't use global variables defaultWidth and defaultHeight for some reason?
+            // determine which quadrant x position is in
+            if (x < canvasWidth/4) {
+                x = (canvasWidth/2-selectShape.width())/2
+            } else if (x >= canvasWidth/2) {
+                x = (canvasWidth/2-selectShape.width())/2 + canvasWidth/2
+            } else {
+                x = (canvasWidth-selectShape.width())/2
+            }
+            x = canvasWidth-selectShape.width() > 0 ? x : 0
+
+            // determine which quadrant y position is in
+            if (y < canvasHeight/4) {
+                y = (canvasHeight/2-selectShape.height())/2
+            } else if (y >= canvasHeight/2) {
+                y = (canvasHeight/2-selectShape.height())/2 + canvasHeight/2
+            } else {
+                y = (canvasHeight-selectShape.height())/2
+            }
+            y = canvasHeight-selectShape.height() > 0 ? y : 0
+
+            let origDeg = selectShape.transform('rotate');
+            // reset shape
+            selectShape.move((selectShape.width()/2), (selectShape.height()/2));
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x,y);
+            selectShape.transform({
+                rotate: origDeg
+            });
+        },
+        remove: function() {
+            selectShape.remove()
+        },
+        resize: function(svg, canvasWidth, canvasHeight, width, height) {
+            console.log(selectShape.x());
+            console.log(selectShape.y());
+            let origDeg = selectShape.transform('rotate');
+            let x;
+            let y;
+            // determine which quadrant x position is in
+            if (selectShape.x() < canvasWidth/4) {
+                x = (canvasWidth/2-width)/2
+            } else if (selectShape.x() >= canvasWidth/2) {
+                x = (canvasWidth/2-width)/2 + canvasWidth/2
+            } else {
+                x = (canvasWidth-width)/2
+            }
+            x = canvasWidth-width > 0 ? x : 0
+
+            // determine which quadrant y position is in
+            if (selectShape.y() < canvasHeight/4) {
+                y = (canvasHeight/2-height)/2
+            } else if (selectShape.y() >= canvasHeight/2) {
+                y = (canvasHeight/2-height)/2 + canvasHeight/2
+            } else {
+                y = (canvasHeight-height)/2
+            }
+            y = canvasHeight-height > 0 ? y : 0
+
+            // reset shape
+            selectShape.size(width, height);
+            selectShape.move((canvasWidth-width)/2, (canvasHeight-height)/2);
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x, y);
+            selectShape.transform({
+                rotate: origDeg
+            });
+        }
+    },
+    "shp-12": {
+        draw: function(svg, colour, x, y, width, height) {
+            let group = svg.group();
+            let polygon = svg.polygon("0.99 0.99 100 0.99 100 100 199.01 100 199.01 199.01 0.99 199.01 0.99 0.99");
+            group.add(polygon)
+            group.fill(colour);
+            group.x(x).y(y);
+            group.size(width, height);
+            selectShape = group;
+            group.click(function() {
+                selectShape = group;
+            });
+        },
+        changeColour: function(svg, colour) {
+            selectShape.fill(colour);
+            let list = selectShape.find('line');
+            list.stroke({color: colour, width: 4});      
+        },
+        rotate: function(svg, deg) {
+            let origDeg = selectShape.transform('rotate');
+            console.log(origDeg);
+            selectShape.transform({
+                rotate: origDeg + deg
+            });
+            console.log(selectShape.transform('rotate'));
+        },
+        relocate: function(svg, x, y, canvasWidth, canvasHeight) { // can't use global variables defaultWidth and defaultHeight for some reason?
+            // determine which quadrant x position is in
+            if (x < canvasWidth/4) {
+                x = (canvasWidth/2-selectShape.width())/2
+            } else if (x >= canvasWidth/2) {
+                x = (canvasWidth/2-selectShape.width())/2 + canvasWidth/2
+            } else {
+                x = (canvasWidth-selectShape.width())/2
+            }
+            x = canvasWidth-selectShape.width() > 0 ? x : 0
+
+            // determine which quadrant y position is in
+            if (y < canvasHeight/4) {
+                y = (canvasHeight/2-selectShape.height())/2
+            } else if (y >= canvasHeight/2) {
+                y = (canvasHeight/2-selectShape.height())/2 + canvasHeight/2
+            } else {
+                y = (canvasHeight-selectShape.height())/2
+            }
+            y = canvasHeight-selectShape.height() > 0 ? y : 0
+
+            let origDeg = selectShape.transform('rotate');
+            // reset shape
+            selectShape.move((selectShape.width()/2), (selectShape.height()/2));
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x,y);
+            selectShape.transform({
+                rotate: origDeg
+            });
+        },
+        remove: function() {
+            selectShape.remove()
+        },
+        resize: function(svg, canvasWidth, canvasHeight, width, height) {
+            console.log(selectShape.x());
+            console.log(selectShape.y());
+            let origDeg = selectShape.transform('rotate');
+            let x;
+            let y;
+            // determine which quadrant x position is in
+            if (selectShape.x() < canvasWidth/4) {
+                x = (canvasWidth/2-width)/2
+            } else if (selectShape.x() >= canvasWidth/2) {
+                x = (canvasWidth/2-width)/2 + canvasWidth/2
+            } else {
+                x = (canvasWidth-width)/2
+            }
+            x = canvasWidth-width > 0 ? x : 0
+
+            // determine which quadrant y position is in
+            if (selectShape.y() < canvasHeight/4) {
+                y = (canvasHeight/2-height)/2
+            } else if (selectShape.y() >= canvasHeight/2) {
+                y = (canvasHeight/2-height)/2 + canvasHeight/2
+            } else {
+                y = (canvasHeight-height)/2
+            }
+            y = canvasHeight-height > 0 ? y : 0
+
+            // reset shape
+            selectShape.size(width, height);
+            selectShape.move((canvasWidth-width)/2, (canvasHeight-height)/2);
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x, y);
+            selectShape.transform({
+                rotate: origDeg
+            });
+        }
+    },
+    "shp-13": {
+        draw: function(svg, colour, x, y, width, height) {
+            let group = svg.group();
+            let polygon = svg.polygon("149.51 14.24 50.49 14.24 0.97 100 50.49 185.76 149.51 185.76 199.03 100 149.51 14.24");
+            group.add(polygon)
+            group.fill(colour);
+            group.x(x).y(y);
+            group.size(width, height);
+            selectShape = group;
+            group.click(function() {
+                selectShape = group;
+            });
+        },
+        changeColour: function(svg, colour) {
+            selectShape.fill(colour);
+            let list = selectShape.find('line');
+            list.stroke({color: colour, width: 4});      
+        },
+        rotate: function(svg, deg) {
+            let origDeg = selectShape.transform('rotate');
+            console.log(origDeg);
+            selectShape.transform({
+                rotate: origDeg + deg
+            });
+            console.log(selectShape.transform('rotate'));
+        },
+        relocate: function(svg, x, y, canvasWidth, canvasHeight) { // can't use global variables defaultWidth and defaultHeight for some reason?
+            // determine which quadrant x position is in
+            if (x < canvasWidth/4) {
+                x = (canvasWidth/2-selectShape.width())/2
+            } else if (x >= canvasWidth/2) {
+                x = (canvasWidth/2-selectShape.width())/2 + canvasWidth/2
+            } else {
+                x = (canvasWidth-selectShape.width())/2
+            }
+            x = canvasWidth-selectShape.width() > 0 ? x : 0
+
+            // determine which quadrant y position is in
+            if (y < canvasHeight/4) {
+                y = (canvasHeight/2-selectShape.height())/2
+            } else if (y >= canvasHeight/2) {
+                y = (canvasHeight/2-selectShape.height())/2 + canvasHeight/2
+            } else {
+                y = (canvasHeight-selectShape.height())/2
+            }
+            y = canvasHeight-selectShape.height() > 0 ? y : 0
+
+            let origDeg = selectShape.transform('rotate');
+            // reset shape
+            selectShape.move((selectShape.width()/2), (selectShape.height()/2));
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x,y);
+            selectShape.transform({
+                rotate: origDeg
+            });
+        },
+        remove: function() {
+            selectShape.remove()
+        },
+        resize: function(svg, canvasWidth, canvasHeight, width, height) {
+            console.log(selectShape.x());
+            console.log(selectShape.y());
+            let origDeg = selectShape.transform('rotate');
+            let x;
+            let y;
+            // determine which quadrant x position is in
+            if (selectShape.x() < canvasWidth/4) {
+                x = (canvasWidth/2-width)/2
+            } else if (selectShape.x() >= canvasWidth/2) {
+                x = (canvasWidth/2-width)/2 + canvasWidth/2
+            } else {
+                x = (canvasWidth-width)/2
+            }
+            x = canvasWidth-width > 0 ? x : 0
+
+            // determine which quadrant y position is in
+            if (selectShape.y() < canvasHeight/4) {
+                y = (canvasHeight/2-height)/2
+            } else if (selectShape.y() >= canvasHeight/2) {
+                y = (canvasHeight/2-height)/2 + canvasHeight/2
+            } else {
+                y = (canvasHeight-height)/2
+            }
+            y = canvasHeight-height > 0 ? y : 0
+
+            // reset shape
+            selectShape.size(width, height);
+            selectShape.move((canvasWidth-width)/2, (canvasHeight-height)/2);
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x, y);
+            selectShape.transform({
+                rotate: origDeg
+            });
+        }
+    },
+    "shp-14": {
+        draw: function(svg, colour, x, y, width, height) {
+            let group = svg.group();
+            group.path('M1,199V1A197.37,197.37,0,0,1,141,59a197.37,197.37,0,0,1,58,140Z');
+            group.fill(colour);
+            group.x(x).y(y);
+            group.size(width, height);
+            selectShape = group;
+            group.click(function() {
+                selectShape = group;
+            });
+        },
+        changeColour: function(svg, colour) {
+            selectShape.fill(colour);
+            let list = selectShape.find('line');
+            list.stroke({color: colour, width: 4});      
+        },
+        rotate: function(svg, deg) {
+            let origDeg = selectShape.transform('rotate');
+            console.log(origDeg);
+            selectShape.transform({
+                rotate: origDeg + deg
+            });
+            console.log(selectShape.transform('rotate'));
+        },
+        relocate: function(svg, x, y, canvasWidth, canvasHeight) { // can't use global variables defaultWidth and defaultHeight for some reason?
+            // determine which quadrant x position is in
+            if (x < canvasWidth/4) {
+                x = (canvasWidth/2-selectShape.width())/2
+            } else if (x >= canvasWidth/2) {
+                x = (canvasWidth/2-selectShape.width())/2 + canvasWidth/2
+            } else {
+                x = (canvasWidth-selectShape.width())/2
+            }
+            x = canvasWidth-selectShape.width() > 0 ? x : 0
+
+            // determine which quadrant y position is in
+            if (y < canvasHeight/4) {
+                y = (canvasHeight/2-selectShape.height())/2
+            } else if (y >= canvasHeight/2) {
+                y = (canvasHeight/2-selectShape.height())/2 + canvasHeight/2
+            } else {
+                y = (canvasHeight-selectShape.height())/2
+            }
+            y = canvasHeight-selectShape.height() > 0 ? y : 0
+
+            let origDeg = selectShape.transform('rotate');
+            // reset shape
+            selectShape.move((selectShape.width()/2), (selectShape.height()/2));
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x,y);
+            selectShape.transform({
+                rotate: origDeg
+            });
+        },
+        remove: function() {
+            selectShape.remove()
+        },
+        resize: function(svg, canvasWidth, canvasHeight, width, height) {
+            console.log(selectShape.x());
+            console.log(selectShape.y());
+            let origDeg = selectShape.transform('rotate');
+            let x;
+            let y;
+            // determine which quadrant x position is in
+            if (selectShape.x() < canvasWidth/4) {
+                x = (canvasWidth/2-width)/2
+            } else if (selectShape.x() >= canvasWidth/2) {
+                x = (canvasWidth/2-width)/2 + canvasWidth/2
+            } else {
+                x = (canvasWidth-width)/2
+            }
+            x = canvasWidth-width > 0 ? x : 0
+
+            // determine which quadrant y position is in
+            if (selectShape.y() < canvasHeight/4) {
+                y = (canvasHeight/2-height)/2
+            } else if (selectShape.y() >= canvasHeight/2) {
+                y = (canvasHeight/2-height)/2 + canvasHeight/2
+            } else {
+                y = (canvasHeight-height)/2
+            }
+            y = canvasHeight-height > 0 ? y : 0
+
+            // reset shape
+            selectShape.size(width, height);
+            selectShape.move((canvasWidth-width)/2, (canvasHeight-height)/2);
+            selectShape.transform({
+                rotate: 0
+            });
+            // apply any rotations
+            selectShape.move(x, y);
+            selectShape.transform({
+                rotate: origDeg
+            });
+        }
     }
 }
 
-// const shapeMapping = {
-//     "shp-1": "01-1",
-//     "shp-2": "02-1",
-//     "shp-5": "05-1",
-//     "shp-6": "06-1",
-// }
-
-// // Insert svg functions
-// const attach = {
-//     "four-balls-choice": function attachSvg(element) {
-//         $(element).svg({
-//         onLoad: function()
-//             {
-//             element.load('Red1.svg', {addTo: true,  changeSize: false});        
-//             },
-//         settings: {}}
-//         )
-//     },
-//     "test-balls-choice": function attachSvg() {
-
-//     }
-// }
-
-
-// // Draw canvas shape functions
-// const draw = {
-//     "triangle-choice": function drawcanvas(ctx, colour, angle) {
-//             //Shape0;
-//             ctx.rotate(angle * Math.PI / 180);
-//             ctx.shadowColor ="rgba(0,0,0,0)";
-//             ctx.strokeStyle ="rgba(0,0,0,1)";
-//             ctx.lineWidth = 1;
-//             ctx.lineCap = "butt";
-//             ctx.lineJoin = "miter";
-//             ctx.beginPath();
-//             ctx.moveTo(0,92);
-//             ctx.lineTo(200,199);
-//             ctx.lineTo(0,199);
-//             ctx.lineTo(0,92);
-//             ctx.closePath();
-//             ctx.stroke();
-//             ctx.shadowOffsetX = 15;
-//             ctx.shadowOffsetY = 15;
-//             ctx.shadowBlur = 0;
-//             ctx.shadowColor = "rgba(0,0,0,0)";
-//             ctx.fillStyle = colour;
-//             ctx.fill();
-//         },
-//         "star-choice": function drawcanvas(ctx, colour, angle)
-//         {
-//           //Shape9;
-//           ctx.rotate(angle * Math.PI / 180);
-//           ctx.shadowColor ="rgba(0,0,0,0)";
-//           ctx.strokeStyle ="rgba(255,255,255,1)";
-//           ctx.lineWidth = 1;
-//           ctx.lineCap = "butt";
-//           ctx.lineJoin = "miter";
-//           ctx.beginPath();
-//           ctx.moveTo(20,112);
-//           ctx.lineTo(80,92);
-//           ctx.lineTo(80,132);
-//           ctx.lineTo(20,112);
-//           ctx.closePath();
-//           ctx.stroke();
-//           ctx.shadowOffsetX = -15;
-//           ctx.shadowOffsetY = -15;
-//           ctx.shadowBlur = 0;
-//           ctx.shadowColor = "rgba(0,0,0,0)";
-//           ctx.fillStyle = colour;
-//           ctx.fill();
-
-//           //Shape7;
-//           ctx.shadowColor ="rgba(0,0,0,0)";
-//           ctx.strokeStyle ="rgba(255,255,255,1)";
-//           ctx.lineWidth = 1;
-//           ctx.lineCap = "butt";
-//           ctx.lineJoin = "miter";
-//           ctx.beginPath();
-//           ctx.moveTo(100,32);
-//           ctx.lineTo(80,92);
-//           ctx.lineTo(120,92);
-//           ctx.lineTo(100,32);
-//           ctx.closePath();
-//           ctx.stroke();
-//           ctx.shadowOffsetX = 15;
-//           ctx.shadowOffsetY = 15;
-//           ctx.shadowBlur = 0;
-//           ctx.shadowColor = "rgba(0,0,0,0)";
-//           ctx.fillStyle = colour;
-//           ctx.fill();
-
-//           //Shape10;
-//           ctx.shadowColor ="rgba(0,0,0,0)";
-//           ctx.strokeStyle ="rgba(255,255,255,1)";
-//           ctx.lineWidth = 1;
-//           ctx.lineCap = "butt";
-//           ctx.lineJoin = "miter";
-//           ctx.beginPath();
-//           ctx.moveTo(80,92);
-//           ctx.lineTo(120,92);
-//           ctx.lineTo(120,132);
-//           ctx.lineTo(80,132);
-//           ctx.lineTo(80,92);
-//           ctx.closePath();
-//           ctx.stroke();
-//           ctx.shadowOffsetX = 15;
-//           ctx.shadowOffsetY = 15;
-//           ctx.shadowBlur = 0;
-//           ctx.shadowColor = "rgba(0,0,0,0)";
-//           ctx.fillStyle = colour;
-//           ctx.fill();
-
-//           //Shape11;
-//           ctx.shadowColor ="rgba(0,0,0,0)";
-//           ctx.strokeStyle ="rgba(255,255,255,1)";
-//           ctx.lineWidth = 1;
-//           ctx.lineCap = "butt";
-//           ctx.lineJoin = "miter";
-//           ctx.beginPath();
-//           ctx.moveTo(180,112);
-//           ctx.lineTo(120,132);
-//           ctx.lineTo(120,92);
-//           ctx.lineTo(180,112);
-//           ctx.closePath();
-//           ctx.stroke();
-//           ctx.shadowOffsetX = -15;
-//           ctx.shadowOffsetY = -15;
-//           ctx.shadowBlur = 0;
-//           ctx.shadowColor = "rgba(0,0,0,0)";
-//           ctx.fillStyle = colour;
-//           ctx.fill();
-
-//           //Shape12;
-//           ctx.shadowColor ="rgba(0,0,0,0)";
-//           ctx.strokeStyle ="rgba(255,255,255,1)";
-//           ctx.lineWidth = 1;
-//           ctx.lineCap = "butt";
-//           ctx.lineJoin = "miter";
-//           ctx.beginPath();
-//           ctx.moveTo(100,192);
-//           ctx.lineTo(120,132);
-//           ctx.lineTo(80,132);
-//           ctx.lineTo(100,192);
-//           ctx.closePath();
-//           ctx.stroke();
-//           ctx.shadowOffsetX = 15;
-//           ctx.shadowOffsetY = 15;
-//           ctx.shadowBlur = 0;
-//           ctx.shadowColor = "rgba(0,0,0,0)";
-//           ctx.fillStyle = colour;
-//           ctx.fill();
-//     }
-// }

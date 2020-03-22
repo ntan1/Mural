@@ -38,6 +38,12 @@ $(document).ready(function(){
 
     let draw = SVG().addTo('#main-canvas').size(canvasWidth,canvasHeight);
 
+    // Set colours of colour menu items
+    $("#colours-menu").children(".menu-item").each(function() {
+        console.log($(this).attr('colour'))
+        $(this).css('background-color',$(this).attr('colour'))
+    });
+
     $(".menu-item").click(function() {
         $("#status-message").html("");
     });
