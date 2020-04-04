@@ -19,7 +19,8 @@ $(document).ready(function(){
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             console.log(doc.id, "=>", doc.data());
-            let embedSvg = $(`<div id="${doc.id}" class="tile" title="${doc.data().title}" submitName="${doc.data().submitName}">`).append(doc.data().svg.replace('width="600" height="600"', 'width="300" height="300" viewBox="0 0 600 600"')).css("background-color", doc.data().bgColour);
+            // let embedSvg = $(`<div id="${doc.id}" class="tile" title="${doc.data().title}" submitName="${doc.data().submitName}">`).append(doc.data().svg.replace('width="600" height="600"', 'width="300" height="300" viewBox="0 0 600 600"')).css("background-color", doc.data().bgColour);
+            let embedSvg = $(`<div id="${doc.id}" class="tile" title="${doc.data().title}" submitName="${doc.data().submitName}">`).append(doc.data().svg.replace('width="600" height="600"', 'width="384" height="384" viewBox="0 0 600 600"')).css("background-color", doc.data().bgColour);
             // $("#display").append("<div class='tile'>" + doc.data().svg.replace('width="600" height="600"', 'width="300" height="300" viewBox="0 0 600 600"') + "</div>").css("background-color", doc.data().bgColour);
             $("#display").append(embedSvg);
         });
