@@ -1236,7 +1236,7 @@ let drawShapes = {
     "shp-13": {
         draw: function(svg, colour, x, y, width, height) {
             let group = svg.group();
-            let polygon = svg.polygon("149.51 14.24 50.49 14.24 0.97 100 50.49 185.76 149.51 185.76 199.03 100 149.51 14.24");
+            let polygon = svg.polygon("50.49 100 75.24 57.12 124.76 57.12 149.51 100 124.76 142.88 75.24 142.88 50.49 100");
             group.add(polygon)
             group.fill(colour);
             group.x(x).y(y);
