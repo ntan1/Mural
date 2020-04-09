@@ -24,7 +24,7 @@ $(document).ready(function(){
     let selectColourId = "Clear"; // colour id
     let targetToggle = "shape-colour";
     let activeCanvas; // canvas context
-    let defaultColour = "#E63634"
+    let defaultColour = "#b93626"
     let canvas = $("#main-canvas");
 
     let canvasWidth = 600;
